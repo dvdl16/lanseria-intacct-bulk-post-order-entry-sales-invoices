@@ -1,0 +1,293 @@
+<Application id="10003" origId="401000216258@10003" orderNo="2" isSystem="F" version="1.3" companyNo="401000216258" >
+<CustomLabels>W10=</CustomLabels><DisplayName>Bulk Order Entry Invoicing</DisplayName><Description>Application with Objects to enable Bulk posting of Order Entry Invoices</Description><Props><menuIds>10108,</menuIds><objDefIds>10023</objDefIds><isDeployed>1</isDeployed></Props><DependentDefs>
+</DependentDefs>
+<DataObjectDefs>
+<DataObjectDef id="10023" origId="401000216258@10023" objDefName="SALESINVOICEBATCH" >
+<CustomLabels>W10=</CustomLabels><SingularName>Sales Invoice Batch</SingularName><PluralName>Sales Invoice Batches</PluralName><Description>Batch to bulk post linked Order Entry Invoices</Description><Props><isAuditable>1</isAuditable><isDeployed>1</isDeployed><defProcess>0</defProcess><objIcon>mc71</objIcon></Props><DataFieldDefs>
+<DataFieldDef id="10687" origId="401000216258@10687" objDef="10023" dataClassName="Pt_FieldString" uiClassName="Pt_ObjectLink" columnName="OBJ_NAME" fieldName="name" groupName="OBJNAME" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>Sales Invoice Batch</DisplayLabel><Props><isSystem>1</isSystem><isTextIndex>1</isTextIndex><isSearchable>1</isSearchable><isTableColumn>1</isTableColumn><isTemplateField>1</isTemplateField><maxLength>100</maxLength><isReadOnly></isReadOnly></Props></DataFieldDef>
+<DataFieldDef id="10688" origId="401000216258@10688" objDef="10023" dataClassName="Pt_FieldComment" uiClassName="Pt_CommentsArea" fieldName="comment" groupName="COMMENT" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>IA.COMMENTS</DisplayLabel><Props><isSystem>1</isSystem><rows>10</rows><cols>60</cols></Props></DataFieldDef>
+<DataFieldDef id="10689" origId="401000216258@10689" objDef="10023" dataClassName="Pt_FieldInt" uiClassName="Pt_UserLink" columnName="CREATED_BY" fieldName="createdBy" groupName="STANDARD" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>IA.CREATED_BY</DisplayLabel><Props><isSystem>1</isSystem><isReadOnly>1</isReadOnly><isSearchable>1</isSearchable><isTableColumn>1</isTableColumn><isTemplateField>1</isTemplateField></Props></DataFieldDef>
+<DataFieldDef id="10690" origId="401000216258@10690" objDef="10023" dataClassName="Pt_FieldDateTime" uiClassName="Pt_DateTimeInput" columnName="CREATED_AT" fieldName="createdAt" groupName="STANDARD" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>IA.CREATED_AT</DisplayLabel><Props><isSystem>1</isSystem><isReadOnly>1</isReadOnly><isSearchable>1</isSearchable><isTableColumn>1</isTableColumn><isTemplateField>1</isTemplateField><isGMT>1</isGMT></Props></DataFieldDef>
+<DataFieldDef id="10691" origId="401000216258@10691" objDef="10023" dataClassName="Pt_FieldInt" uiClassName="Pt_UserLink" columnName="UPDATED_BY" fieldName="updatedBy" groupName="STANDARD" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>IA.UPDATED_BY</DisplayLabel><Props><isSystem>1</isSystem><isReadOnly>1</isReadOnly><isSearchable>1</isSearchable><isTableColumn>1</isTableColumn><isTemplateField>1</isTemplateField></Props></DataFieldDef>
+<DataFieldDef id="10692" origId="401000216258@10692" objDef="10023" dataClassName="Pt_FieldDateTime" uiClassName="Pt_DateTimeInput" columnName="UPDATED_AT" fieldName="updatedAt" groupName="STANDARD" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>IA.UPDATED_AT</DisplayLabel><Props><isSystem>1</isSystem><isReadOnly>1</isReadOnly><isSearchable>1</isSearchable><isTableColumn>1</isTableColumn><isTemplateField>1</isTemplateField><isGMT>1</isGMT></Props></DataFieldDef>
+<DataFieldDef id="10693" origId="401000216258@10693" objDef="10023" dataClassName="Pt_FieldInt" uiClassName="Pt_IntInput" columnName="RECORD#" fieldName="id" groupName="STANDARD" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>IA.ID</DisplayLabel><Props><isSystem>1</isSystem><isReadOnly>1</isReadOnly><isSearchable>1</isSearchable><isTableColumn>1</isTableColumn><isTemplateField>1</isTemplateField></Props></DataFieldDef>
+<DataFieldDef id="10694" origId="401000216258@10694" objDef="10023" dataClassName="Pt_FieldDummy" uiClassName="Pt_TextInput" fieldName="RECORD_URL" groupName="STANDARD" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>IA.RECORD_URL</DisplayLabel><Props><isSystem>1</isSystem><isReadOnly>1</isReadOnly><isTemplateField>1</isTemplateField></Props></DataFieldDef>
+<DataFieldDef id="10695" origId="401000216258@10695" objDef="10023" dataClassName="Pt_FieldRelationship" uiClassName="Pt_Relationship" columnName="INTG0" fieldName="RSODOCUMENT" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>Sales Invoices</DisplayLabel><Props><relId>10111</relId><isSearchable>1</isSearchable><isTableColumn>1</isTableColumn><isTemplateField>1</isTemplateField><noClone>1</noClone></Props></DataFieldDef>
+</DataFieldDefs>
+<RelationshipDefs>
+<RelationshipDef id="10111" origId="401000216258@10111" relName="R10111" objDefId1="10023" objDefId2="999520000000038" CustomLabels="W10=" singularName1="Sales Invoice Batch" pluralName1="Sales Invoice Batches" singularName2="Sales Invoice" pluralName2="Sales Invoices" isMultiple1="F" isMultiple2="T" >
+</RelationshipDef>
+</RelationshipDefs>
+<ListViews>
+<ListView id="10778" origId="401000216258@10778" objDefId="10023" isSystem="T" >
+<CustomLabels>W10=</CustomLabels><ViewName>All Sales Invoice Batches</ViewName><Props><columns>10687,10692,10691</columns><defSortCol>10692</defSortCol><showActions>1</showActions><isSystem>1</isSystem><filterVersion>2</filterVersion></Props></ListView>
+</ListViews>
+<Templates>
+<Template type="doc" id="10035" origId="401000216258@10035" objDef="10023" name="Bulk Post Invoices Template" contentType="text/directInput" fileName="direct_input.txt" templateType="2" >
+<RawData>eyEjTE9PUF9CRUdJTi5SMTAxMTEhfQ0KPHVwZGF0ZV9zb3RyYW5zYWN0aW9uIGtleT0ieyFSMTAxMTEuRE9DTk8hfSI+IA0KICA8c3RhdGU+UGVuZGluZzwvc3RhdGU+DQo8L3VwZGF0ZV9zb3RyYW5zYWN0aW9uPg0KeyEjTE9PUF9FTkQuUjEwMTExIX0=</RawData></Template>
+</Templates>
+</DataObjectDef>
+<DataObjectDef  id="999520000000038" origId="401000216258@999520000000038" objDefName="sodocument" docType="Sales Invoice" isStandard="true" >
+<DataFieldDefs>
+<DataFieldDef id="10696" origId="401000216258@10696" objDef="999520000000038" dataClassName="Pt_FieldRelationship" uiClassName="Pt_Relationship" fieldName="RSALESINVOICEBATCH" >
+<CustomLabels>W10=</CustomLabels><DisplayLabel>Sales Invoice Batch</DisplayLabel><Props><relId>10111</relId><isSearchable>1</isSearchable><isTableColumn>1</isTableColumn><isTemplateField>1</isTemplateField></Props></DataFieldDef>
+</DataFieldDefs>
+</DataObjectDef>
+</DataObjectDefs>
+<Menus>
+<Menu id="10108" origId="401000216258@10108" objDefId="10023" orderNo="1" parentId="-1" pageType="5" >
+<CustomLabels>W10=</CustomLabels><DisplayName>Sales Invoice Bulk Posting</DisplayName><Menus><Menu id="10109" origId="401000216258@10109" objDefId="10023" orderNo="1" parentId="10108" pageType="5" >
+<CustomLabels>W10=</CustomLabels><DisplayName>IA.LIST</DisplayName></Menu>
+<Menu id="10110" origId="401000216258@10110" objDefId="10023" orderNo="2" parentId="10108" pageType="4" >
+<CustomLabels>W10=</CustomLabels><DisplayName>IA.ADD</DisplayName></Menu>
+<Menu id="10111" origId="401000216258@10111" objDefId="10023" orderNo="3" parentId="10108" pageType="12" >
+<CustomLabels>W10=</CustomLabels><DisplayName>IA.TEMPLATES</DisplayName><PageURL>pt_templates.phtml</PageURL></Menu>
+<Menu id="10112" origId="401000216258@10112" objDefId="10023" orderNo="4" parentId="10108" pageType="11" >
+<CustomLabels>W10=</CustomLabels><DisplayName>IA.IMPORT</DisplayName><PageURL>pt_import.phtml</PageURL></Menu>
+</Menus></Menu>
+</Menus>
+<WebPages>
+<WebPage id="13121" origId="401000216258@13078" objDefId="10023" pageType="2" isBaseVersion="T" isPortal="F" >
+<PageName>View Sales Invoice Batch</PageName><Props><columns>1</columns><numTabs>2</numTabs><enableTabs>true</enableTabs><tabName0>Sales Invoice Batch info</tabName0><tabName1>System info</tabName1><hideMoreActions>false</hideMoreActions><actionUiFlag>U</actionUiFlag></Props><PageSections>
+<PageSection id="13615" origId="401000216258@13541" pageId="13121" >
+<SectionTitle>Page begin</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><viewTabNo>-1</viewTabNo><pageColNo>0</pageColNo><isCollapsable></isCollapsable><isDefault></isDefault><doNotSynch>1</doNotSynch><viewTabPlatIndex>-1</viewTabPlatIndex></Props><PageCells>
+<PageCell id="12576" origId="401000216258@12498" sectionId="13615" alignment="1" fieldId="-1" cellClassName="Pt_ObjectViewBegin" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13616" origId="401000216258@13542" pageId="13121" orderNo="1" >
+<SectionTitle>Sales Invoice Batch information</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><viewTabNo>0</viewTabNo><pageColNo>0</pageColNo><isCollapsable>1</isCollapsable><isDefault>1</isDefault><doNotSynch></doNotSynch><viewTabPlatIndex>0</viewTabPlatIndex></Props><PageCells>
+<PageCell id="12577" origId="401000216258@12499" sectionId="13616" fieldId="10687" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+<PageCell id="12578" origId="401000216258@12525" sectionId="13616" orderNo="1" fieldId="10695" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13644" origId="401000216258@13644" pageId="13121" orderNo="2" >
+<SectionTitle>Actions</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><viewTabNo>0</viewTabNo><pageColNo>0</pageColNo><isCollapsable>1</isCollapsable><isDefault></isDefault><doNotSynch></doNotSynch><viewTabPlatIndex>0</viewTabPlatIndex></Props><PageCells>
+<PageCell id="12623" origId="401000216258@12623" sectionId="13644" alignment="2" fieldId="-1" cellClassName="Pt_ScriptControl" >
+<Text>PHNjcmlwdD4NCiAgY29uc29sZS5sb2coIvCfm6wgQnVsayBPcmRlciBFbnRyeSBJbnZvaWNpbmc6IEJ1bGsgUGVuZGluZyBzdWJtaXR0ZXIiKTsNCg0KICAvLyBDb2xsZWN0ICphbGwqIGludm9pY2Uga2V5cyBmcm9tIHRoZSBsb29wIChhc3N1bXB0aW9uIHBlciB5b3VyIG5vdGUpDQogIGNvbnN0IGludm9pY2VLZXlzID0gW107DQogIHshI0xPT1BfQkVHSU4uUjEwMTExIzQwMTAwMDIxMzYzNEAxMDYxMyF9DQogICAgaW52b2ljZUtleXMucHVzaCgieyFSMTAxMTEuRE9DSUQjdGV4dCF9Iik7DQogIHshI0xPT1BfRU5ELlIxMDExMSF9DQoNCiAgLy8gQ2xlYW4gKyBkZS1kdXBlDQogIGNvbnN0IGtleXMgPSBBcnJheS5mcm9tKG5ldyBTZXQoaW52b2ljZUtleXMubWFwKGsgPT4gKGsgfHwgIiIpLnRyaW0oKSkuZmlsdGVyKEJvb2xlYW4pKSk7DQoNCiAgY29uc29sZS5sb2coIvCfk6YgS2V5cyBmb3VuZDoiLCBrZXlzLmxlbmd0aCk7DQogIGlmIChrZXlzLmxlbmd0aCkgY29uc29sZS5sb2coIvCfk4wgU2FtcGxlIGtleToiLCBrZXlzWzBdKTsNCg0KICAvLyBET00gZWxlbWVudHMNCiAgY29uc3QgcG9zdE1vZGFsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInBvc3RNb2RhbCIpOw0KICBjb25zdCBidWxrUG9zdEJ0biA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJidWxrUG9zdCIpOw0KICBjb25zdCBjYW5jZWxCdG4gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiY2FuY2VsU2FsZXNJbnZvaWNlQmF0Y2giKTsNCiAgY29uc3Qgc3VibWl0QnRuID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInN1Ym1pdFNhbGVzSW52b2ljZUJhdGNoIik7DQoNCiAgY29uc3QgYWxlcnRNb2RhbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJhbGVydE1vZGFsIik7DQogIGNvbnN0IGFsZXJ0TWVzc2FnZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJhbGVydE1lc3NhZ2UiKTsNCiAgY29uc3QgYWxlcnRPa0J1dHRvbiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJhbGVydE9rQnV0dG9uIik7DQoNCiAgY29uc3Qgc3Bpbm5lck92ZXJsYXkgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic3Bpbm5lck92ZXJsYXkiKTsNCiAgY29uc3Qgc3Bpbm5lclRleHQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic3Bpbm5lclRleHQiKTsNCiAgY29uc3Qgc3Bpbm5lclN1YlRleHQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic3Bpbm5lclN1YlRleHQiKTsNCg0KICAvLyAtLS0gTW9kYWwgd2lyaW5nICh5b3VyIGV4aXN0aW5nIGJlaGF2aW9yKSAtLS0NCiAgYnVsa1Bvc3RCdG4uYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLCAoZXZlbnQpID0+IHsNCiAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpOw0KICAgIHBvc3RNb2RhbC5zdHlsZS5kaXNwbGF5ID0gImZsZXgiOw0KICB9KTsNCg0KICBjYW5jZWxCdG4uYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLCAoKSA9PiB7DQogICAgcG9zdE1vZGFsLnN0eWxlLmRpc3BsYXkgPSAibm9uZSI7DQogIH0pOw0KDQogIHBvc3RNb2RhbC5hZGRFdmVudExpc3RlbmVyKCJjbGljayIsIChlKSA9PiB7DQogICAgaWYgKGUudGFyZ2V0ID09PSBwb3N0TW9kYWwpIHBvc3RNb2RhbC5zdHlsZS5kaXNwbGF5ID0gIm5vbmUiOw0KICB9KTsNCg0KICBkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCJrZXlkb3duIiwgKGUpID0+IHsNCiAgICBpZiAoZS5rZXkgPT09ICJFc2NhcGUiKSBwb3N0TW9kYWwuc3R5bGUuZGlzcGxheSA9ICJub25lIjsNCiAgfSk7DQoNCiAgYWxlcnRPa0J1dHRvbi5hZGRFdmVudExpc3RlbmVyKCJjbGljayIsICgpID0+IHsNCiAgICBhbGVydE1vZGFsLnN0eWxlLmRpc3BsYXkgPSAibm9uZSI7DQogIH0pOw0KDQogIC8vIC0tLSBTdWJtaXQgaGFuZGxlciAtLS0NCiAgc3VibWl0QnRuLmFkZEV2ZW50TGlzdGVuZXIoImNsaWNrIiwgYXN5bmMgKGV2ZW50KSA9PiB7DQogICAgZXZlbnQucHJldmVudERlZmF1bHQoKTsNCiAgICBwb3N0TW9kYWwuc3R5bGUuZGlzcGxheSA9ICJub25lIjsNCg0KICAgIGlmICgha2V5cy5sZW5ndGgpIHsNCiAgICAgIHNob3dBbGVydCgiTm8gaW52b2ljZXMgZm91bmQgdG8gc3VibWl0LiIpOw0KICAgICAgcmV0dXJuOw0KICAgIH0NCg0KICAgIC8vIERpc2FibGUgYnV0dG9ucyB0byBhdm9pZCBkb3VibGUgc3VibWl0DQogICAgc2V0QnV0dG9uc0VuYWJsZWQoZmFsc2UpOw0KDQogICAgLy8gU2hvdyBzcGlubmVyDQogICAgc2hvd1NwaW5uZXIoYFN1Ym1pdHRpbmcgJHtrZXlzLmxlbmd0aH0gaW52b2ljZShzKeKApmAsICIiKTsNCg0KICAgIGNvbnN0IGRlbGF5TXMgPSAyMDA7IC8vIHNpbXBsZSB0aHJvdHRsZTsgaW5jcmVhc2UgaWYgeW91ciB0ZW5hbnQgdGhyb3R0bGVzIGFnZ3Jlc3NpdmVseQ0KICAgIGNvbnN0IHJlc3VsdHMgPSB7DQogICAgICB0b3RhbDoga2V5cy5sZW5ndGgsDQogICAgICBzdWNjZXNzOiAwLA0KICAgICAgZmFpbHVyZTogMCwNCiAgICAgIGZhaWx1cmVzOiBbXSAvLyB7a2V5LCBlcnJvclNuaXBwZXR9DQogICAgfTsNCg0KICAgIHRyeSB7DQogICAgICBmb3IgKGxldCBpID0gMDsgaSA8IGtleXMubGVuZ3RoOyBpKyspIHsNCiAgICAgICAgY29uc3Qga2V5ID0ga2V5c1tpXTsNCiAgICAgICAgc3Bpbm5lclN1YlRleHQudGV4dENvbnRlbnQgPSBgUHJvY2Vzc2luZyAke2kgKyAxfSBvZiAke2tleXMubGVuZ3RofWA7DQoNCiAgICAgICAgY29uc29sZS5sb2coYOKeoe+4jyBbJHtpICsgMX0vJHtrZXlzLmxlbmd0aH1dIHVwZGF0ZV9zb3RyYW5zYWN0aW9uYCwga2V5KTsNCg0KICAgICAgICBjb25zdCByZXNwID0gYXdhaXQgc2VuZFVwZGF0ZVNvVHJhbnNhY3Rpb25QZW5kaW5nKGtleSk7DQoNCiAgICAgICAgLy8gVHJlYXQgYW55dGhpbmcgY29udGFpbmluZyA8c3RhdHVzPmZhaWx1cmU8L3N0YXR1cz4gYXMgZmFpbHVyZQ0KICAgICAgICBpZiAoU3RyaW5nKHJlc3ApLmluY2x1ZGVzKCI8c3RhdHVzPmZhaWx1cmU8L3N0YXR1cz4iKSkgew0KICAgICAgICAgIHJlc3VsdHMuZmFpbHVyZSsrOw0KICAgICAgICAgIHJlc3VsdHMuZmFpbHVyZXMucHVzaCh7IGtleSwgZXJyb3JTbmlwcGV0OiBzbmlwKHJlc3ApIH0pOw0KICAgICAgICAgIGNvbnNvbGUud2Fybigi4p2MIEZhaWx1cmUgcmVzcG9uc2UgZm9yIiwga2V5LCByZXNwKTsNCiAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICByZXN1bHRzLnN1Y2Nlc3MrKzsNCiAgICAgICAgICBjb25zb2xlLmxvZygi4pyFIFN1Y2Nlc3MgZm9yIiwga2V5KTsNCiAgICAgICAgfQ0KDQogICAgICAgIC8vIHRocm90dGxlDQogICAgICAgIGlmIChpIDwga2V5cy5sZW5ndGggLSAxKSBhd2FpdCBzbGVlcChkZWxheU1zKTsNCiAgICAgIH0NCg0KICAgICAgaGlkZVNwaW5uZXIoKTsNCg0KICAgICAgY29uc3QgbXNnID0gYnVpbGRTdW1tYXJ5TWVzc2FnZShyZXN1bHRzKTsNCiAgICAgIHNob3dBbGVydChtc2cpOw0KDQogICAgfSBjYXRjaCAoZXJyKSB7DQogICAgICBjb25zb2xlLmVycm9yKCLwn5KlIFVuZXhwZWN0ZWQgZXJyb3I6IiwgZXJyKTsNCiAgICAgIGhpZGVTcGlubmVyKCk7DQogICAgICBzaG93QWxlcnQoYFVuZXhwZWN0ZWQgZXJyb3I6ICR7ZXJyICYmIGVyci5tZXNzYWdlID8gZXJyLm1lc3NhZ2UgOiBTdHJpbmcoZXJyKX1gKTsNCiAgICB9IGZpbmFsbHkgew0KICAgICAgc2V0QnV0dG9uc0VuYWJsZWQodHJ1ZSk7DQogICAgfQ0KICB9KTsNCg0KICAvLyAtLS0gQ29yZTogc2VuZFJlcXVlc3Qgd3JhcHBlciAoTk8gPGZ1bmN0aW9uPiB3cmFwcGVyKSAtLS0NCiAgZnVuY3Rpb24gc2VuZFVwZGF0ZVNvVHJhbnNhY3Rpb25QZW5kaW5nKGludm9pY2VLZXkpIHsNCiAgICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUsIHJlamVjdCkgPT4gew0KICAgICAgdHJ5IHsNCiAgICAgICAgY29uc3QgcyA9IG5ldyBBUElfU2Vzc2lvbigpOw0KDQogICAgICAgIC8vIElNUE9SVEFOVDogc2VuZFJlcXVlc3QgZXhwZWN0cyB0aGUgZnVuY3Rpb24gZWxlbWVudCBpdHNlbGYNCiAgICAgICAgY29uc3QgcGF5bG9hZCA9DQogICAgICAgICAgYDx1cGRhdGVfc290cmFuc2FjdGlvbiBrZXk9IiR7cy54bWxFbmNvZGUoaW52b2ljZUtleSl9Ij4NCiAgICAgICAgICAgICA8c3RhdGU+UGVuZGluZzwvc3RhdGU+DQogICAgICAgICAgIDwvdXBkYXRlX3NvdHJhbnNhY3Rpb24+YDsNCg0KICAgICAgICBzLnNlbmRSZXF1ZXN0KHBheWxvYWQsIGZ1bmN0aW9uIChyZXNwKSB7DQogICAgICAgICAgLy8gbG9nIHRoZSB1bmRlcmx5aW5nIHJlcXVlc3QgZm9yIGRlYnVnZ2luZyBpZiBuZWVkZWQNCiAgICAgICAgICBjb25zb2xlLmxvZygi8J+nviBsYXN0UmVxdWVzdDoiLCBzLmlwX2dldExhc3RSZXF1ZXN0KCkpOw0KICAgICAgICAgIHJlc29sdmUocmVzcCk7DQogICAgICAgIH0pOw0KICAgICAgfSBjYXRjaCAoZSkgew0KICAgICAgICByZWplY3QoZSk7DQogICAgICB9DQogICAgfSk7DQogIH0NCg0KICAvLyAtLS0gVUkgaGVscGVycyAtLS0NCiAgZnVuY3Rpb24gc2V0QnV0dG9uc0VuYWJsZWQoZW5hYmxlZCkgew0KICAgIGJ1bGtQb3N0QnRuLmRpc2FibGVkID0gIWVuYWJsZWQ7DQogICAgc3VibWl0QnRuLmRpc2FibGVkID0gIWVuYWJsZWQ7DQogICAgY2FuY2VsQnRuLmRpc2FibGVkID0gIWVuYWJsZWQ7DQogIH0NCg0KICBmdW5jdGlvbiBzaG93QWxlcnQobXNnKSB7DQogICAgYWxlcnRNZXNzYWdlLnRleHRDb250ZW50ID0gbXNnOw0KICAgIGFsZXJ0TW9kYWwuc3R5bGUuZGlzcGxheSA9ICJmbGV4IjsNCiAgfQ0KDQogIGZ1bmN0aW9uIHNob3dTcGlubmVyKG1haW5UZXh0LCBzdWJUZXh0KSB7DQogICAgaWYgKHNwaW5uZXJUZXh0KSBzcGlubmVyVGV4dC50ZXh0Q29udGVudCA9IG1haW5UZXh0IHx8ICJXb3JraW5n4oCmIjsNCiAgICBpZiAoc3Bpbm5lclN1YlRleHQpIHNwaW5uZXJTdWJUZXh0LnRleHRDb250ZW50ID0gc3ViVGV4dCB8fCAiIjsNCiAgICBpZiAoc3Bpbm5lck92ZXJsYXkpIHNwaW5uZXJPdmVybGF5LnN0eWxlLmRpc3BsYXkgPSAiZmxleCI7DQogIH0NCg0KICBmdW5jdGlvbiBoaWRlU3Bpbm5lcigpIHsNCiAgICBpZiAoc3Bpbm5lck92ZXJsYXkpIHNwaW5uZXJPdmVybGF5LnN0eWxlLmRpc3BsYXkgPSAibm9uZSI7DQogICAgaWYgKHNwaW5uZXJTdWJUZXh0KSBzcGlubmVyU3ViVGV4dC50ZXh0Q29udGVudCA9ICIiOw0KICB9DQoNCiAgZnVuY3Rpb24gYnVpbGRTdW1tYXJ5TWVzc2FnZShyKSB7DQogICAgbGV0IG1zZyA9IGBEb25lLlxuXG5Ub3RhbDogJHtyLnRvdGFsfVxuU3VjY2VzczogJHtyLnN1Y2Nlc3N9XG5GYWlsZWQ6ICR7ci5mYWlsdXJlfWA7DQogICAgaWYgKHIuZmFpbHVyZSA+IDApIHsNCiAgICAgIC8vIEluY2x1ZGUgYSBmZXcgZmFpbHVyZXMgc28gdXNlciBjYW4gdHJvdWJsZXNob290IHdpdGhvdXQgZmxvb2RpbmcgVUkNCiAgICAgIGNvbnN0IHNhbXBsZSA9IHIuZmFpbHVyZXMuc2xpY2UoMCwgMykubWFwKGYgPT4gYC0gJHtmLmtleX1gKS5qb2luKCJcbiIpOw0KICAgICAgbXNnICs9IGBcblxuRmFpbGVkIGV4YW1wbGVzOlxuJHtzYW1wbGV9YDsNCiAgICAgIGlmIChyLmZhaWx1cmVzLmxlbmd0aCA+IDMpIG1zZyArPSBgXG7igKYgYW5kICR7ci5mYWlsdXJlcy5sZW5ndGggLSAzfSBtb3JlLmA7DQogICAgfQ0KICAgIHJldHVybiBtc2c7DQogIH0NCg0KICBmdW5jdGlvbiBzbmlwKHhtbFRleHQpIHsNCiAgICBjb25zdCB0ID0gU3RyaW5nKHhtbFRleHQgfHwgIiIpOw0KICAgIHJldHVybiB0Lmxlbmd0aCA+IDI4MCA/ICh0LnNsaWNlKDAsIDI4MCkgKyAi4oCmIikgOiB0Ow0KICB9DQoNCiAgZnVuY3Rpb24gc2xlZXAobXMpIHsNCiAgICByZXR1cm4gbmV3IFByb21pc2UociA9PiBzZXRUaW1lb3V0KHIsIG1zKSk7DQogIH0NCjwvc2NyaXB0Pg0K</Text><Props><enableScriptComponent>true</enableScriptComponent><alignment>2</alignment></Props></PageCell>
+<PageCell id="12624" origId="401000216258@12624" sectionId="13644" orderNo="1" alignment="2" fieldId="-1" cellClassName="Pt_TemplateHTML" >
+<Text>PGJyPjxkaXYgaWQ9InBvc3RTZWN0aW9uIj4mbmJzcDsgJm5ic3A7IDxidXR0b24gaWQ9ImJ1bGtQb3N0IiB0eXBlPSJidXR0b24iIGNsYXNzPSJidG4gYnRuLXNlY29uZGFyeSI+U3VibWl0PC9idXR0b24+PC9kaXY+PCEtLSBQb3N0IE1vZGFsIFN0cnVjdHVyZSAtLT48ZGl2IGlkPSJwb3N0TW9kYWwiIMKgPSIiIHN0eWxlPSJkaXNwbGF5Om5vbmU7IHBvc2l0aW9uOmZpeGVkOyB0b3A6MDsgbGVmdDowOyB3aWR0aDoxMDAlOyBoZWlnaHQ6MTAwJTsgYmFja2dyb3VuZDpyZ2JhKDAsMCwwLDAuNSk7IGFsaWduLWl0ZW1zOmNlbnRlcjsganVzdGlmeS1jb250ZW50OmNlbnRlcjsiPiZuYnNwOyAmbmJzcDsgPGRpdiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZTsgcGFkZGluZzoyMHB4OyBib3JkZXItcmFkaXVzOjhweDsgbWF4LXdpZHRoOjMwMHB4OyB3aWR0aDoxMDAlOyI+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IEFyZSB5b3Ugc3VyZT8mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgPGJ1dHRvbiBpZD0ic3VibWl0U2FsZXNJbnZvaWNlQmF0Y2giIMKgPSIiIHR5cGU9ImJ1dHRvbiIgY2xhc3M9ImJ0biBidG4tc2Vjb25kYXJ5Ij5TdWJtaXQ8L2J1dHRvbj4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgPGJ1dHRvbiBpZD0iY2FuY2VsU2FsZXNJbnZvaWNlQmF0Y2giIHR5cGU9ImJ1dHRvbiIgY2xhc3M9ImJ0biBidG4tc2Vjb25kYXJ5Ij5DYW5jZWw8L2J1dHRvbj4mbmJzcDsgJm5ic3A7IDwvZGl2PjwvZGl2PjwhLS0gQWxlcnQgTW9kYWwgU3RydWN0dXJlIC0tPjxkaXYgaWQ9ImFsZXJ0TW9kYWwiIMKgPSIiIHN0eWxlPSJkaXNwbGF5Om5vbmU7IHBvc2l0aW9uOmZpeGVkOyB0b3A6MDsgbGVmdDowOyB3aWR0aDoxMDAlOyBoZWlnaHQ6MTAwJTsgYmFja2dyb3VuZDpyZ2JhKDAsMCwwLDAuNSk7IGFsaWduLWl0ZW1zOmNlbnRlcjsganVzdGlmeS1jb250ZW50OmNlbnRlcjsiPiZuYnNwOyAmbmJzcDsgPGRpdiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZTsgcGFkZGluZzoyMHB4OyBib3JkZXItcmFkaXVzOjhweDsgbWF4LXdpZHRoOjMwMHB4OyB3aWR0aDoxMDAlOyB0ZXh0LWFsaWduOmNlbnRlcjsiPiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyA8cCBpZD0iYWxlcnRNZXNzYWdlIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToyMHB4OyI+PC9wPjxidXR0b24gaWQ9ImFsZXJ0T2tCdXR0b24iIHR5cGU9ImJ1dHRvbiIgwqA9IiIgY2xhc3M9ImJ0biBidG4tc2Vjb25kYXJ5Ij5PSzwvYnV0dG9uPiZuYnNwOyAmbmJzcDsgPC9kaXY+PC9kaXY+PCEtLSBTcGlubmVyIE92ZXJsYXkgLS0+PGRpdiBpZD0ic3Bpbm5lck92ZXJsYXkiIMKgPSIiIHN0eWxlPSJkaXNwbGF5Om5vbmU7IHBvc2l0aW9uOmZpeGVkOyB0b3A6MDsgbGVmdDowOyB3aWR0aDoxMDAlOyBoZWlnaHQ6MTAwJTsmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7YmFja2dyb3VuZDpyZ2JhKDAsMCwwLDAuMzUpOyBhbGlnbi1pdGVtczpjZW50ZXI7IGp1c3RpZnktY29udGVudDpjZW50ZXI7IHotaW5kZXg6OTk5OTk7Ij4mbmJzcDsgPGRpdiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZTsgcGFkZGluZzoxNnB4IDE4cHg7IGJvcmRlci1yYWRpdXM6MTBweDsgbWluLXdpZHRoOjI2MHB4OyB0ZXh0LWFsaWduOmNlbnRlcjsiPiZuYnNwOyAmbmJzcDsgPGRpdiBpZD0ic3Bpbm5lciIgwqA9IiIgc3R5bGU9IndpZHRoOjI4cHg7IGhlaWdodDoyOHB4OyBtYXJnaW46MCBhdXRvIDEwcHggYXV0bzsgYm9yZGVyOjRweCBzb2xpZCAjZGRkOyBib3JkZXItdG9wLWNvbG9yOiM1NTU7Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7Ym9yZGVyLXJhZGl1czo1MCU7IGFuaW1hdGlvbjpzcGluIDAuOXMgbGluZWFyIGluZmluaXRlOyI+PC9kaXY+Jm5ic3A7ICZuYnNwOyA8ZGl2IGlkPSJzcGlubmVyVGV4dCIgc3R5bGU9ImZvbnQtc2l6ZToxNHB4OyI+U3VibWl0dGluZ+KApjwvZGl2PiZuYnNwOyAmbmJzcDsgPGRpdiBpZD0ic3Bpbm5lclN1YlRleHQiIHN0eWxlPSJmb250LXNpemU6MTJweDsgY29sb3I6IzY2NjsgbWFyZ2luLXRvcDo2cHg7Ij48L2Rpdj4mbmJzcDsgPC9kaXY+PC9kaXY+PHN0eWxlPkBrZXlmcmFtZXMgc3BpbiB7IHRvIHsgdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTsgfSB9PC9zdHlsZT4=</Text><Props><alignment>2</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13617" origId="401000216258@13543" pageId="13121" orderNo="3" >
+<SectionTitle>System information</SectionTitle><Props><borderStyle>2</borderStyle><columns>2</columns><viewTabNo>1</viewTabNo><pageColNo>0</pageColNo><isCollapsable>1</isCollapsable><isDefault></isDefault><doNotSynch>1</doNotSynch><viewTabPlatIndex>1</viewTabPlatIndex></Props><PageCells>
+<PageCell id="12580" origId="401000216258@12500" sectionId="13617" fieldId="10689" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+<PageCell id="12581" origId="401000216258@12501" sectionId="13617" orderNo="1" alignment="1" fieldId="10690" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>1</alignment></Props></PageCell>
+<PageCell id="12582" origId="401000216258@12502" sectionId="13617" orderNo="2" fieldId="10691" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+<PageCell id="12583" origId="401000216258@12503" sectionId="13617" orderNo="3" alignment="1" fieldId="10692" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>1</alignment></Props></PageCell>
+<PageCell id="12584" origId="401000216258@12504" sectionId="13617" orderNo="4" fieldId="10693" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+<PageCell id="12585" origId="401000216258@12505" sectionId="13617" orderNo="5" alignment="1" fieldId="10694" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13619" origId="401000216258@13548" pageId="13121" orderNo="4" >
+<SectionTitle>Audit trail</SectionTitle><Props><borderStyle>3</borderStyle><columns>1</columns><viewTabNo>1</viewTabNo><pageColNo>0</pageColNo><isCollapsable>1</isCollapsable><isDefault></isDefault><doNotSynch></doNotSynch><viewTabPlatIndex>1</viewTabPlatIndex></Props><PageCells>
+<PageCell id="12587" origId="401000216258@12510" sectionId="13619" alignment="1" fieldId="-1" cellClassName="Pt_HistoryTable" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13618" origId="401000216258@13544" pageId="13121" orderNo="5" >
+<SectionTitle>Page end</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><viewTabNo>-1</viewTabNo><pageColNo>0</pageColNo><isCollapsable></isCollapsable><isDefault></isDefault><doNotSynch>1</doNotSynch><viewTabPlatIndex>-1</viewTabPlatIndex></Props><PageCells>
+<PageCell id="12586" origId="401000216258@12506" sectionId="13618" alignment="1" fieldId="-1" cellClassName="Pt_ObjectViewEnd" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+<WebPage id="13122" origId="401000216258@13075" objDefId="10023" pageType="5" isBaseVersion="T" isPortal="F" >
+<PageName>Sales Invoice Batches list</PageName><Props><columns>1</columns><numTabs>0</numTabs><enableTabs>false</enableTabs><hideMoreActions>false</hideMoreActions><actionUiFlag>U</actionUiFlag></Props><PageSections>
+<PageSection id="13620" origId="401000216258@13549" pageId="13122" >
+<SectionTitle>All Sales Invoice Batches</SectionTitle><Props><borderStyle>3</borderStyle><columns>1</columns><viewTabNo>0</viewTabNo><pageColNo>0</pageColNo><isCollapsable></isCollapsable><isDefault></isDefault><doNotSynch></doNotSynch><viewTabPlatIndex>0</viewTabPlatIndex></Props><PageCells>
+<PageCell id="12588" origId="401000216258@12511" sectionId="13620" alignment="1" fieldId="-1" cellClassName="Pt_PageableList" >
+<Props><objDefId2>10023</objDefId2><showNewLink>true</showNewLink><showQuickCreate>true</showQuickCreate><showViewSelector>true</showViewSelector><showCheckBoxes>true</showCheckBoxes><alignment>1</alignment><orderViewSelector></orderViewSelector></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+<WebPage id="13123" origId="401000216258@13076" objDefId="10023" pageType="4" isBaseVersion="T" isPortal="F" >
+<PageName>New Sales Invoice Batch</PageName><PageSections>
+<PageSection id="13621" origId="401000216258@13538" pageId="13123" >
+<SectionTitle>Page begin</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12589" origId="401000216258@12495" sectionId="13621" alignment="1" fieldId="-1" cellClassName="Pt_ObjectFormBegin" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13622" origId="401000216258@13539" pageId="13123" orderNo="1" >
+<SectionTitle>Sales Invoice Batch information</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><isDefault>1</isDefault><viewTabNo>0</viewTabNo></Props><PageCells>
+<PageCell id="12590" origId="401000216258@12496" sectionId="13622" fieldId="10687" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+<PageCell id="12591" origId="401000216258@12523" sectionId="13622" orderNo="1" fieldId="10695" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13623" origId="401000216258@13540" pageId="13123" orderNo="2" >
+<SectionTitle>Page end</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12592" origId="401000216258@12497" sectionId="13623" alignment="1" fieldId="-1" cellClassName="Pt_ObjectFormEnd" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+<WebPage id="13124" origId="401000216258@13077" objDefId="10023" pageType="18" isBaseVersion="T" isPortal="F" >
+<PageName>Quick create</PageName><PageSections>
+<PageSection id="13624" origId="401000216258@13557" pageId="13124" >
+<SectionTitle>Page begin</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12593" origId="401000216258@12520" sectionId="13624" alignment="1" fieldId="-1" cellClassName="Pt_QuickCreateFormBegin" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13625" origId="401000216258@13558" pageId="13124" orderNo="1" >
+<SectionTitle>Quick create</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><isDefault>1</isDefault><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12594" origId="401000216258@12521" sectionId="13625" alignment="1" fieldId="10687" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>1</alignment></Props></PageCell>
+<PageCell id="12595" origId="401000216258@12524" sectionId="13625" orderNo="1" fieldId="10695" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13626" origId="401000216258@13559" pageId="13124" orderNo="2" >
+<SectionTitle>Page end</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12596" origId="401000216258@12522" sectionId="13626" alignment="1" fieldId="-1" cellClassName="Pt_ObjectFormEnd" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+<WebPage id="13125" origId="401000216258@13079" objDefId="10023" pageType="3" isBaseVersion="T" isPortal="F" >
+<PageName>Edit Sales Invoice Batch</PageName><PageSections>
+<PageSection id="13627" origId="401000216258@13545" pageId="13125" >
+<SectionTitle>Page begin</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12597" origId="401000216258@12507" sectionId="13627" alignment="1" fieldId="-1" cellClassName="Pt_ObjectFormBegin" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13628" origId="401000216258@13546" pageId="13125" orderNo="1" >
+<SectionTitle>Sales Invoice Batch information</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><isDefault>1</isDefault><viewTabNo>0</viewTabNo></Props><PageCells>
+<PageCell id="12598" origId="401000216258@12508" sectionId="13628" fieldId="10687" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+<PageCell id="12599" origId="401000216258@12526" sectionId="13628" orderNo="1" fieldId="10695" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>0</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13629" origId="401000216258@13547" pageId="13125" orderNo="2" >
+<SectionTitle>Page end</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12601" origId="401000216258@12509" sectionId="13629" alignment="1" fieldId="-1" cellClassName="Pt_ObjectFormEnd" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+<WebPage id="13126" origId="401000216258@13080" objDefId="10023" pageType="8" isBaseVersion="T" isPortal="F" >
+<PageName>Sales Invoice Batches selector list</PageName><PageSections>
+<PageSection id="13630" origId="401000216258@13550" pageId="13126" >
+<SectionTitle>Sales Invoice Batches selector</SectionTitle><Props><borderStyle>3</borderStyle><columns>1</columns><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12602" origId="401000216258@12512" sectionId="13630" alignment="1" fieldId="-1" cellClassName="Pt_SelectorList" >
+<Text>U2FsZXMgSW52b2ljZSBCYXRjaGVzIHNlbGVjdG9y</Text><Props><objDefId2>10023</objDefId2><alignment>1</alignment><orderViewSelector></orderViewSelector></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+<WebPage id="13127" origId="401000216258@13081" objDefId="10023" pageType="7" isBaseVersion="T" isPortal="F" >
+<PageName>Status change</PageName><PageSections>
+<PageSection id="13631" origId="401000216258@13551" pageId="13127" >
+<SectionTitle>Page begin</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12603" origId="401000216258@12513" sectionId="13631" alignment="1" fieldId="-1" cellClassName="Pt_StatusFormBegin" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13632" origId="401000216258@13552" pageId="13127" orderNo="1" >
+<SectionTitle>Confirm status change</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><isDefault>1</isDefault><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12604" origId="401000216258@12514" sectionId="13632" alignment="1" fieldId="-1" cellClassName="Pt_TemplateHTML" >
+<Text>Q2hhbmdlIHdvcmtmbG93IHN0YXR1cyB0byA8c3Ryb25nIGNsYXNzPSJpMThuLW1kIj57ISNTRVNTSU9OLm5leHRTdGF0dXMhfTwvc3Ryb25nPj8=</Text><Props><alignment>1</alignment></Props></PageCell>
+<PageCell id="12605" origId="401000216258@12515" sectionId="13632" orderNo="1" alignment="1" fieldId="10688" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13633" origId="401000216258@13553" pageId="13127" orderNo="2" >
+<SectionTitle>Page end</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12606" origId="401000216258@12516" sectionId="13633" alignment="1" fieldId="-1" cellClassName="Pt_ObjectFormEnd" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+<WebPage id="13128" origId="401000216258@13082" objDefId="10023" pageType="17" isBaseVersion="T" isPortal="F" >
+<PageName>Mass update</PageName><PageSections>
+<PageSection id="13634" origId="401000216258@13554" pageId="13128" >
+<SectionTitle>Page begin</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12607" origId="401000216258@12517" sectionId="13634" alignment="1" fieldId="-1" cellClassName="Pt_MassUpdateFormBegin" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13635" origId="401000216258@13555" pageId="13128" orderNo="1" >
+<SectionTitle>Mass update</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><isDefault>1</isDefault><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12608" origId="401000216258@12518" sectionId="13635" alignment="1" fieldId="-1" cellClassName="Pt_TemplateHTML" >
+<Text>VXNlIG1hc3MgdXBkYXRlIHBhZ2VzIHRvIGNoYW5nZSBmaWVsZCB2YWx1ZXMgZm9yIG11bHRpcGxlIHJlY29yZHMgc2ltdWx0YW5lb3VzbHkuIEJsYW5rIGZpZWxkcyB3aWxsIG5vdCBiZSB1cGRhdGVkLiBZb3Ugb3IgeW91ciBhZG1pbmlzdHJhdG9yIGNhbiBlZGl0IHRoaXMgcGFnZSB0byBhZGQgb3IgcmVtb3ZlIGZpZWxkcyB5b3Ugd2FudCB0byBiZSBhYmxlIHRvIHVwZGF0ZSBmcm9tIHRoaXMgcGFnZS4=</Text><Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13636" origId="401000216258@13556" pageId="13128" orderNo="2" >
+<SectionTitle>Page end</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12609" origId="401000216258@12519" sectionId="13636" alignment="1" fieldId="-1" cellClassName="Pt_ObjectFormEnd" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+<WebPage id="13129" origId="401000216258@13083" objDefId="10023" pageType="11" isBaseVersion="T" isPortal="F" >
+<PageName>Import Sales Invoice Batches</PageName><PageSections>
+<PageSection id="13637" origId="401000216258@13533" pageId="13129" >
+<SectionTitle>Page begin</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12610" origId="401000216258@12489" sectionId="13637" alignment="1" fieldId="-1" cellClassName="Pt_ImportFormBegin" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13638" origId="401000216258@13534" pageId="13129" orderNo="1" >
+<SectionTitle>Select saved map</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12611" origId="401000216258@12490" sectionId="13638" alignment="1" fieldId="-1" cellClassName="Pt_ImportMapSelector" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13639" origId="401000216258@13535" pageId="13129" orderNo="2" >
+<SectionTitle>Map Sales Invoice Batch fields to Import file columns</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><isDefault>1</isDefault><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12612" origId="401000216258@12491" sectionId="13639" alignment="1" fieldId="-1" cellClassName="Pt_TemplateHTML" >
+<Text>PHRhYmxlIGNsYXNzPSdyYnNfY29tcG9uZW50Q29udGVudFRhYmxlJyBjZWxscGFkZGluZz0wIGNlbGxzcGFjaW5nPTA+PHRyIGhlaWdodD0nMjAnPjx0ZCBjbGFzcz0ncmJzX3JpZ2h0TGFiZWwnPlNhbGVzIEludm9pY2UgQmF0Y2ggZmllbGRzPC90ZD48dGQgY2xhc3M9J3Jic19sZWZ0RGF0YUNvbFdpZGUnPlNwcmVhZHNoZWV0IGNvbHVtbnMmbmJzcDsmbmJzcDtDb25zdGFudCB2YWx1ZTwvdGQ+PC90cj48L3RhYmxlPg==</Text><Props><alignment>1</alignment></Props></PageCell>
+<PageCell id="12613" origId="401000216258@12492" sectionId="13639" orderNo="1" alignment="1" fieldId="10687" cellClassName="Pt_FieldWrapper" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13640" origId="401000216258@13536" pageId="13129" orderNo="3" >
+<SectionTitle>Notify email address when import is complete</SectionTitle><Props><borderStyle>2</borderStyle><columns>1</columns><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12615" origId="401000216258@12493" sectionId="13640" alignment="1" fieldId="-1" cellClassName="Pt_ImportNotify" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+<PageSection id="13641" origId="401000216258@13537" pageId="13129" orderNo="4" >
+<SectionTitle>Page end</SectionTitle><Props><borderStyle>1</borderStyle><columns>1</columns><doNotSynch>1</doNotSynch><viewTabNo>-1</viewTabNo></Props><PageCells>
+<PageCell id="12616" origId="401000216258@12494" sectionId="13641" alignment="1" fieldId="-1" cellClassName="Pt_ObjectFormEnd" >
+<Props><alignment>1</alignment></Props></PageCell>
+</PageCells>
+</PageSection>
+</PageSections>
+</WebPage>
+</WebPages>
+<Portals>
+</Portals>
+<Version>2</Version>
+<MetaData>
+<PublishedFrom>Lanseria-sandbox</PublishedFrom><PublishedBy>ExtUser|rjcaccounting|DirkVDL</PublishedBy></MetaData>
+</Application>

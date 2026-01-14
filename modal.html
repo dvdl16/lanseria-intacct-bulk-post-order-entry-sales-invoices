@@ -1,0 +1,43 @@
+
+<!-- Bulk Post -->
+<br>
+<div id="postSection">
+    <button id="bulkPost" type="button" class="btn btn-secondary">Post Invoices</button>
+</div>
+
+<!-- Post Modal Structure -->
+<div id="postModal"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+    <div style="background:white; padding:20px; border-radius:8px; max-width:300px; width:100%;">
+        Are you sure?
+        <button id="submitSalesInvoiceBatch"
+            type="button" class="btn btn-secondary">Submit</button>
+        <button id="cancelSalesInvoiceBatch" type="button" class="btn btn-secondary">Cancel</button>
+    </div>
+</div>
+
+<!-- Alert Modal Structure -->
+<div id="alertModal"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+    <div style="background:white; padding:20px; border-radius:8px; max-width:300px; width:100%; text-align:center;">
+        <p id="alertMessage" style="margin-bottom:20px;"></p><button id="alertOkButton" type="button"
+            class="btn btn-secondary">OK</button>
+    </div>
+</div>
+
+<!-- Spinner Overlay -->
+<div id="spinnerOverlay"
+  style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+         background:rgba(0,0,0,0.35); align-items:center; justify-content:center; z-index:99999;">
+  <div style="background:white; padding:16px 18px; border-radius:10px; min-width:260px; text-align:center;">
+    <div id="spinner"
+      style="width:28px; height:28px; margin:0 auto 10px auto; border:4px solid #ddd; border-top-color:#555;
+             border-radius:50%; animation:spin 0.9s linear infinite;"></div>
+    <div id="spinnerText" style="font-size:14px;">Submitting…</div>
+    <div id="spinnerSubText" style="font-size:12px; color:#666; margin-top:6px;"></div>
+  </div>
+</div>
+
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>

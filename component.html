@@ -1,0 +1,190 @@
+<!-- 
+    Project Name: Intacct Bank Recon Modification
+    
+    Author      : Dirk van der Laarse
+    Version     : v0.1.0
+    
+    License     : Finfoot Tech (Pty) Ltd
+    
+    Notes       :
+    Contact RJC Accounting for any enquiries
+-->
+    
+<script>
+  console.log("🛬 Bulk Order Entry Invoicing: Bulk Pending submitter");
+
+  // Collect *all* invoice keys from the loop (assumption per your note)
+  const invoiceKeys = [];
+  {!#LOOP_BEGIN.R10111#401000213634@10613!}
+    invoiceKeys.push("{!R10111.DOCID#text!}");
+  {!#LOOP_END.R10111!}
+
+  // Clean + de-dupe
+  const keys = Array.from(new Set(invoiceKeys.map(k => (k || "").trim()).filter(Boolean)));
+
+  console.log("📦 Keys found:", keys.length);
+  if (keys.length) console.log("📌 Sample key:", keys[0]);
+
+  // DOM elements
+  const postModal = document.getElementById("postModal");
+  const bulkPostBtn = document.getElementById("bulkPost");
+  const cancelBtn = document.getElementById("cancelSalesInvoiceBatch");
+  const submitBtn = document.getElementById("submitSalesInvoiceBatch");
+
+  const alertModal = document.getElementById("alertModal");
+  const alertMessage = document.getElementById("alertMessage");
+  const alertOkButton = document.getElementById("alertOkButton");
+
+  const spinnerOverlay = document.getElementById("spinnerOverlay");
+  const spinnerText = document.getElementById("spinnerText");
+  const spinnerSubText = document.getElementById("spinnerSubText");
+
+  // --- Modal wiring (your existing behavior) ---
+  bulkPostBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    postModal.style.display = "flex";
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    postModal.style.display = "none";
+  });
+
+  postModal.addEventListener("click", (e) => {
+    if (e.target === postModal) postModal.style.display = "none";
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") postModal.style.display = "none";
+  });
+
+  alertOkButton.addEventListener("click", () => {
+    alertModal.style.display = "none";
+  });
+
+  // --- Submit handler ---
+  submitBtn.addEventListener("click", async (event) => {
+    event.preventDefault();
+    postModal.style.display = "none";
+
+    if (!keys.length) {
+      showAlert("No invoices found to submit.");
+      return;
+    }
+
+    // Disable buttons to avoid double submit
+    setButtonsEnabled(false);
+
+    // Show spinner
+    showSpinner(`Submitting ${keys.length} invoice(s)…`, "");
+
+    const delayMs = 200; // simple throttle; increase if your tenant throttles aggressively
+    const results = {
+      total: keys.length,
+      success: 0,
+      failure: 0,
+      failures: [] // {key, errorSnippet}
+    };
+
+    try {
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        spinnerSubText.textContent = `Processing ${i + 1} of ${keys.length}`;
+
+        console.log(`➡️ [${i + 1}/${keys.length}] update_sotransaction`, key);
+
+        const resp = await sendUpdateSoTransactionPending(key);
+
+        // Treat anything containing <status>failure</status> as failure
+        if (String(resp).includes("<status>failure</status>")) {
+          results.failure++;
+          results.failures.push({ key, errorSnippet: snip(resp) });
+          console.warn("❌ Failure response for", key, resp);
+        } else {
+          results.success++;
+          console.log("✅ Success for", key);
+        }
+
+        // throttle
+        if (i < keys.length - 1) await sleep(delayMs);
+      }
+
+      hideSpinner();
+
+      const msg = buildSummaryMessage(results);
+      showAlert(msg);
+
+    } catch (err) {
+      console.error("💥 Unexpected error:", err);
+      hideSpinner();
+      showAlert(`Unexpected error: ${err && err.message ? err.message : String(err)}`);
+    } finally {
+      setButtonsEnabled(true);
+    }
+  });
+
+  // --- Core: sendRequest wrapper (NO <function> wrapper) ---
+  function sendUpdateSoTransactionPending(invoiceKey) {
+    return new Promise((resolve, reject) => {
+      try {
+        const s = new API_Session();
+
+        // IMPORTANT: sendRequest expects the function element itself
+        const payload =
+          `<update_sotransaction key="${s.xmlEncode(invoiceKey)}">
+             <state>Pending</state>
+           </update_sotransaction>`;
+
+        s.sendRequest(payload, function (resp) {
+          // log the underlying request for debugging if needed
+          console.log("🧾 lastRequest:", s.ip_getLastRequest());
+          resolve(resp);
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  // --- UI helpers ---
+  function setButtonsEnabled(enabled) {
+    bulkPostBtn.disabled = !enabled;
+    submitBtn.disabled = !enabled;
+    cancelBtn.disabled = !enabled;
+  }
+
+  function showAlert(msg) {
+    alertMessage.textContent = msg;
+    alertModal.style.display = "flex";
+  }
+
+  function showSpinner(mainText, subText) {
+    if (spinnerText) spinnerText.textContent = mainText || "Working…";
+    if (spinnerSubText) spinnerSubText.textContent = subText || "";
+    if (spinnerOverlay) spinnerOverlay.style.display = "flex";
+  }
+
+  function hideSpinner() {
+    if (spinnerOverlay) spinnerOverlay.style.display = "none";
+    if (spinnerSubText) spinnerSubText.textContent = "";
+  }
+
+  function buildSummaryMessage(r) {
+    let msg = `Done.\n\nTotal: ${r.total}\nSuccess: ${r.success}\nFailed: ${r.failure}`;
+    if (r.failure > 0) {
+      // Include a few failures so user can troubleshoot without flooding UI
+      const sample = r.failures.slice(0, 3).map(f => `- ${f.key}`).join("\n");
+      msg += `\n\nFailed examples:\n${sample}`;
+      if (r.failures.length > 3) msg += `\n… and ${r.failures.length - 3} more.`;
+    }
+    return msg;
+  }
+
+  function snip(xmlText) {
+    const t = String(xmlText || "");
+    return t.length > 280 ? (t.slice(0, 280) + "…") : t;
+  }
+
+  function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+</script>
