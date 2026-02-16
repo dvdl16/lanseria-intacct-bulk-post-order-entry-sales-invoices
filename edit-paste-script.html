@@ -1,0 +1,142 @@
+<!-- 
+    Project Name: Intacct Bulk Post Order Entry Sales Invoices
+    
+    Author      : Dirk van der Laarse
+    Version     : v0.2.0
+    
+    License     : Finfoot Tech (Pty) Ltd
+    
+    Notes       :
+    Contact RJC Accounting for any enquiries
+-->
+
+<script>
+(function() {
+  console.log("🛬 Batch UI updater from paste loaded");
+
+  // --- DOM elements ---
+  const pasteTarget = document.getElementById("edit_report_data_paste_target");
+  const updateBtn = document.getElementById("update_batch_from_paste");
+  const spinnerOverlay = document.getElementById("spinnerOverlay");
+  const spinnerText = document.getElementById("spinnerText");
+  
+  // --- Main handler ---
+  if (!pasteTarget || !updateBtn) {
+    console.error("Required elements for paste-to-batch not found. Aborting.");
+    return;
+  }
+
+  updateBtn.addEventListener("click", handleUpdateBatch);
+
+  function handleUpdateBatch() {
+    console.log("🖱️ 'Add Invoices' button clicked.");
+    const rawText = pasteTarget.value;
+    console.log("📋 Raw text from paste area:", `\n---\n${rawText}\n---`);
+
+    if (!rawText || !rawText.trim()) {
+      alert("Please paste the report data into the text area.");
+      pasteTarget.focus();
+      return;
+    }
+
+    const invoices = parseInvoicesFromReport(rawText);
+    console.log("🔍 Parsed invoices array:", invoices);
+
+    if (!invoices.length) {
+      alert("Could not find any valid invoices in the pasted text. Ensure 'Document ID' and 'Record number' columns are present.");
+      return;
+    }
+
+    if (typeof rbf_selectObject !== 'function') {
+        alert("Error: The required Intacct function 'rbf_selectObject' was not found. This script may be out of date.");
+        console.error("'rbf_selectObject' function is not defined in the global scope.");
+        return;
+    }
+
+    setButtonsEnabled(false);
+    showSpinner(`Adding ${invoices.length} invoices...`);
+
+    try {
+      const viewPageId = '12447'; 
+      const inputName = 'oe_invoices';
+      const inputElement = document.getElementById(inputName);
+      const tableBodyElement = document.getElementById(`rtable_${inputName}`);
+
+      if (!inputElement || !tableBodyElement) {
+          console.error(`Could not find the target input ('${inputName}') or table body ('rtable_${inputName}'). Aborting.`);
+          alert("Error: Could not find the required UI elements for adding invoices.");
+          return;
+      }
+      
+      console.log("✅ Target UI elements found. Simulating focus to initialize component...");
+      inputElement.focus();
+      
+      console.log(`Attempting to add ${invoices.length} invoices by calling rbf_selectObject...`);
+      for (const invoice of invoices) {
+        console.log(`  -> Calling rbf_selectObject with: objId=${invoice.recordNo}, objName=${invoice.docId}`);
+        rbf_selectObject(invoice.recordNo, invoice.docId, viewPageId, inputName, true, false, null);
+      }
+      
+      console.log("✅ All invoices processed. Firing 'change' event to finalize.");
+      inputElement.dispatchEvent(new Event('change', { bubbles: true }));
+      
+      pasteTarget.value = ''; 
+      spinnerText.textContent = "Success! Invoices added. Please click Save.";
+
+    } catch (err) {
+      console.error("💥 Unexpected error while adding invoices:", err);
+      alert(`An unexpected error occurred: ${err.message || String(err)}`);
+      spinnerText.textContent = "An error occurred.";
+    } finally {
+      setTimeout(() => {
+          hideSpinner();
+          setButtonsEnabled(true);
+      }, 2000);
+    }
+  }
+  
+  // --- Utility functions ---
+  function parseInvoicesFromReport(rawText) {
+    const lines = rawText.split('\n');
+    const invoices = [];
+    const seenRecordNos = new Set();
+
+    for (const line of lines) {
+      const trimmedLine = line.trim();
+      if (!trimmedLine || trimmedLine.startsWith('Customer ID') || trimmedLine.startsWith('Sum Total')) {
+          continue;
+      }
+      
+      const columns = trimmedLine.split('\t');
+      
+      if (columns.length > 2) {
+        const docId = columns[1].trim();
+        const recordNo = columns[2].trim();
+        
+        if (docId && recordNo && !seenRecordNos.has(recordNo)) {
+          invoices.push({ recordNo: recordNo, docId: docId });
+          seenRecordNos.add(recordNo);
+        }
+      }
+    }
+    return invoices;
+  }
+
+  // --- UI Helpers ---
+  function setButtonsEnabled(enabled) {
+    updateBtn.disabled = !enabled;
+    document.querySelectorAll("#save, #save_and_new, #cancel").forEach(btn => {
+        if(btn) btn.disabled = !enabled;
+    });
+  }
+
+  function showSpinner(mainText) {
+    if (spinnerText) spinnerText.textContent = mainText || "Working…";
+    if (spinnerOverlay) spinnerOverlay.style.display = "flex";
+  }
+
+  function hideSpinner() {
+    if (spinnerOverlay) spinnerOverlay.style.display = "none";
+  }
+})();
+</script>

@@ -2,7 +2,7 @@
     Project Name: Intacct Bank Recon Modification
     
     Author      : Dirk van der Laarse
-    Version     : v0.1.0
+    Version     : v0.2.0
     
     License     : Finfoot Tech (Pty) Ltd
     
@@ -13,7 +13,7 @@
 <script>
   console.log("🛬 Bulk Order Entry Invoicing: Bulk Pending submitter");
 
-  // Collect *all* invoice keys from the loop (assumption per your note)
+  // Collect *all* invoice keys from the loop
   const invoiceKeys = [];
   {!#LOOP_BEGIN.R10111#401000213634@10613!}
     invoiceKeys.push("{!R10111.DOCID#text!}");

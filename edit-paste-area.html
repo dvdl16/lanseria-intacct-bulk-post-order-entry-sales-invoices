@@ -1,0 +1,36 @@
+<!-- 
+    Project Name: Intacct Bulk Post Order Entry Sales Invoices
+    
+    Author      : Dirk van der Laarse
+    Version     : v0.2.0
+    
+    License     : Finfoot Tech (Pty) Ltd
+    
+    Notes       :
+    Contact RJC Accounting for any enquiries
+-->
+
+<h4>Paste Report Data to Add Invoices</h4>
+<p>
+  Paste the body of the "AR Invoices" report into the box below to add them to this batch. 
+  Existing invoices will not be removed.
+</p>
+<textarea id="edit_report_data_paste_target" rows="10" style="width: 100%; font-family: monospace;"></textarea>
+<br><br>
+<button id="update_batch_from_paste" type="button" class="btn btn-primary">Add Invoices to Batch</button>
+
+<!-- Spinner Overlay -->
+<div id="spinnerOverlay"
+  style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+         background:rgba(0,0,0,0.35); align-items:center; justify-content:center; z-index:99999;">
+  <div style="background:white; padding:16px 18px; border-radius:10px; min-width:260px; text-align:center;">
+    <div
+      style="width:28px; height:28px; margin:0 auto 10px auto; border:4px solid #ddd; border-top-color:#555;
+             border-radius:50%; animation:spin 0.9s linear infinite;"></div>
+    <div id="spinnerText" style="font-size:14px;">Updating…</div>
+  </div>
+</div>
+
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
