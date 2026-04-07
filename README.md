@@ -19,6 +19,12 @@ Screenshot of **New Sales Invoice Batch** page:
 
 ![screenshot](docs/new-batch-page.png)
 
+
+Make sure the *Custom Report* **AR Invoices** has the following columns:
+
+![screenshot](docs/ar-report-columns.png)
+
+
 ### Minifying for Production
 
 Make sure you have VSCode extenstion **MinifyAll** from *Jose Gracia Berenguer* installed.
