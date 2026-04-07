@@ -2,7 +2,7 @@
     Project Name: Intacct Bulk Post Order Entry Sales Invoices
     
     Author      : Dirk van der Laarse
-    Version     : v0.2.0
+    Version     : v0.2.1
     
     License     : Finfoot Tech (Pty) Ltd
     
@@ -109,10 +109,11 @@
       
       const columns = trimmedLine.split('\t');
       
-      if (columns.length > 2) {
+      if (columns.length > 1) {
         const docId = columns[1].trim();
-        const recordNo = columns[2].trim();
-        
+        const match = docId.match(/(\d+)$/);
+        const recordNo = match ? match[1] : null;
+
         if (docId && recordNo && !seenRecordNos.has(recordNo)) {
           invoices.push({ recordNo: recordNo, docId: docId });
           seenRecordNos.add(recordNo);
